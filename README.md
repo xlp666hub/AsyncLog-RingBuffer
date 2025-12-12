@@ -32,7 +32,8 @@
 
 可能有的朋友还是觉得不够形象，下面我放一张图大家可以参考一下：（纯手画的，感觉画的不错的朋友点赞加关注，不想的话就算了😊）
 
-![生产者消费者模型系统架构图.png](C:\Users\xlp\Desktop\图片存放\生产者消费者模型系统架构图.png.png)
+
+<img width="1280" height="720" alt="生产者消费者模型系统架构图 png" src="https://github.com/user-attachments/assets/d5d9cf62-f32d-45a0-98c4-944873d88e2c" />
 
 可能有细心的朋友注意到了，我在图片中生产者用的Producers，而消费者却用的Consumer，他们一个是复数，一个是单数，意思是有多个生产者而只有一个消费者吗？答案是肯定的。这个模型的名称是**MPSC (Multi-Producer Single-Consumer) ，这是高性能日志系统的标准架构。**
 
@@ -119,7 +120,8 @@
 
 每当有新日志产生，都需要调用 `malloc` 分配一个小节点，消费后调用 free释放内存。但在高频日志场景下（如每秒 1000 次），频繁的申请释放会将**堆内存碎片化**。在嵌入式设备长期运行的条件下（7x24小时），极易导致 **OOM (Out Of Memory)**，即使剩余总内存足够，却申请不到连续的大块内存。
 
-![瑞士奶酪](C:\Users\xlp\Desktop\图片存放\瑞士奶酪.png)
+<img width="560" height="314" alt="瑞士奶酪" src="https://github.com/user-attachments/assets/71934c9b-1d90-4677-bbe1-43154ab2ab6f" />
+
 
 这张图片应该是比较形象的，大家看到这张图片应该能够明白内存碎片化大概是什么意思了。
 
@@ -153,7 +155,8 @@
 
 **内存**：主板上的内存条。巨大但极慢，速度约 **60-100 纳秒**。
 
-![三层缓存](C:\Users\xlp\Desktop\图片存放\三层缓存.png)
+<img width="677" height="256" alt="三层缓存" src="https://github.com/user-attachments/assets/85ea6f83-6a4a-4f8d-abe8-7e68a24c5955" />
+
 
 这张图是我电脑的配置，可以看到它是16核的。L1缓存为1MB，平摊到每个核上面就是64KB/核。L2缓存平摊到每个核上面是1MB/核。L3缓存的64MB是所有16个核心共享的。
 
@@ -574,21 +577,22 @@ test: $(TARGET)
 
 运行之后终端输出如下：
 
-![终端运行结果1](C:\Users\xlp\Desktop\图片存放\终端运行结果1.png)
+<img width="1691" height="931" alt="终端运行结果1" src="https://github.com/user-attachments/assets/25d57a49-78c6-479c-af21-035960bcc346" />
 
-![终端运行结果2](C:\Users\xlp\Desktop\图片存放\终端运行结果2.png)
+<img width="1685" height="978" alt="终端运行结果2" src="https://github.com/user-attachments/assets/31f6608c-16ee-4d70-9188-427fc77f4d13" />
+
 
 由于我在两个生产者中都添加了`printf`函数，所以在终端会看到他们打印出来的内容，总共2000条，我只截图了最前面和最后面的部分，可以看到已经**实现了优雅退出**（生产者全部退出后，消费者自动退出）。
 
 然后我们再来查看一下日志内容是否存放到了 log.txt 里面：
 
-![log.txt前面](C:\Users\xlp\Desktop\图片存放\log.txt前面.png)
+<img width="797" height="463" alt="log txt前面" src="https://github.com/user-attachments/assets/4258e527-6745-4045-a656-36a06589da11" />
 
-![log.txt后面](C:\Users\xlp\Desktop\图片存放\log.txt后面.png)
+<img width="838" height="526" alt="log txt后面" src="https://github.com/user-attachments/assets/cd9fa91b-fce1-4397-8853-c38a7dfbd960" />
 
 我们同样只截去最前面和最后面的部分，两个生产者线程产生的日志内容都是从0-999，也就是各1000个，总共2000个。
 
-![日志行数](C:\Users\xlp\Desktop\图片存放\日志行数.png)
+<img width="1505" height="111" alt="日志行数" src="https://github.com/user-attachments/assets/fbe17a43-0395-49a3-9562-674056223cdf" />
 
 再来查看 log.txt 文件的行数，发现也是2000行。这足以说明**一条日志都没有丢失**。
 
